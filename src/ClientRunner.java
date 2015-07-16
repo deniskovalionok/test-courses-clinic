@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 /**
+ * ClientRunner class for connect user and program,
+ * to input new clients and to use all of clinic functions.
  * @author Artem Getman
  * @date 16.07.2015
  */
@@ -31,6 +33,14 @@ public class ClientRunner {
 
     }
 
+    /**
+     * Method for checking correctness of input numbers to switch
+     * different points of menu
+     * @param selection - number that is printed from keyboard
+     * @param a - lower edge
+     * @param b - upper edge
+     * @return
+     */
     public static int check(int selection, int a, int b){
         while (selection < a || selection > b){
             System.out.println("You entered wrong number. Please try again");
@@ -39,6 +49,9 @@ public class ClientRunner {
         return selection;
     }
 
+    /**
+     * Method that makes user to choose to keep working in program or exit
+     */
     public static void nextOperation(){
         System.out.println("Do you want to select new operation? y/n");
         String selection = in.next();
@@ -58,6 +71,10 @@ public class ClientRunner {
         }
     }
 
+    /**
+     * Start of the ClientRunner program
+     * Entering main menu
+     */
     private static void start(){
         System.out.println("--- Welcome to our Clinic ---");
         System.out.println("Choose next actions:");
@@ -98,6 +115,9 @@ public class ClientRunner {
         System.out.println(slash);
     }
 
+    /**
+     * Shows list of clients
+     */
     private static void showClientList(){
         System.out.println("--- Client list ---");
         clinic.showClients();
@@ -105,6 +125,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * Add new client
+     */
     private static void addClient(){
         System.out.println("Enter new client's name: ");
         String clientName = in.next();
@@ -131,6 +154,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * To find client
+     */
     private static void findClient(){
         System.out.println("Find client:\n1) by Name \n2) by Pet's name");
         int selection = in.nextInt();
@@ -151,6 +177,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * To find pet
+     */
     public static void findPet(){
         System.out.println("Find pet:\n1) by Name \n2) by Client's name");
         int selection = in.nextInt();
@@ -171,6 +200,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * To change client's name
+     */
     public static void changeClientName(){
         System.out.println("Change client's name:\n1) by id \n2) by previous name");
         int selection = in.nextInt();
@@ -196,6 +228,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * To change pet's name
+     */
     public static void changePetName(){
         System.out.println("Change pet's name:\n1) by id \n2) by previous name");
         int selection = in.nextInt();
@@ -221,6 +256,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * To remove client
+     */
     public static void removeClient(){
         System.out.println("Remove client:\n1) by id \n2) by name");
         int selection = in.nextInt();
@@ -241,6 +279,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * To remove pet
+     */
     public static void removePet(){
         System.out.println("Remove pet:\n1) by id \n2) by name");
         int selection = in.nextInt();
@@ -261,6 +302,9 @@ public class ClientRunner {
         nextOperation();
     }
 
+    /**
+     * Exit from program
+     */
     public static void exit(){
         System.out.println("Do you really want to exit? y/n");
         String selection = in.next();
