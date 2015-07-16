@@ -18,6 +18,10 @@ public class Client {
         return this.name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public int getId() {
         return this.id;
     }
@@ -26,10 +30,13 @@ public class Client {
         return this.pet;
     }
 
+    public void deletePet(){
+        this.pet.setPetType("none");
+        this.pet.setName("NO PETS");
+    }
+
     public String toString(){
-        return "Client's id: " + getId() +
-                "; name: " + getName() +
-                "; pet: " + getPet().getName() +
-                "; pet's type: " + this.pet.getPetType();
+        return String.format("Client's id: %s; name: %s; pet: %s; pet's type: %s", getId(),
+                getName(), getPet().getName(), this.pet.getPetType());
     }
 }

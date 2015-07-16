@@ -4,8 +4,8 @@
  */
 public class Snake implements Pet {
 
-    private String name;
     private Animal animal;
+    private String petType = "Snake";
 
     public Snake(Animal animal){
         this.animal = animal;
@@ -22,16 +22,21 @@ public class Snake implements Pet {
 
     @Override
     public void setName(String name) {
-        this.name = name;
+        this.animal.setName(name);
     }
 
     @Override
     public void getVoice() {
-        System.out.println(String.format("% says: %", this.getName(), "SSS-SSS-SSS"));
+        System.out.println(String.format("%s says: %s", this.getName(), "SSS-SSS-SSS"));
     }
 
     @Override
     public String getPetType() {
         return "Snake";
+    }
+
+    @Override
+    public void setPetType(String type) {
+        this.petType = type;
     }
 }

@@ -10,5 +10,6 @@ public interface Pet {
     default String getPetType(){
         return null;
     }
+    default void setPetType(String type){}
 
 }
