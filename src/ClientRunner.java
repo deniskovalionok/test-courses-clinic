@@ -39,6 +39,25 @@ public class ClientRunner {
         return selection;
     }
 
+    public static void nextOperation(){
+        System.out.println("Do you want to select new operation? y/n");
+        String selection = in.next();
+        while(!selection.equalsIgnoreCase("y")  && !selection.equalsIgnoreCase("n")){
+            System.out.println("You entered wrong letter. Please try again");
+            selection = in.next();
+        }
+        switch (selection){
+            case "Y":
+            case "y":
+                start();
+                break;
+            case "N":
+            case "n":
+                exit();
+                break;
+        }
+    }
+
     private static void start(){
         System.out.println("--- Welcome to our Clinic ---");
         System.out.println("Choose next actions:");
@@ -47,7 +66,6 @@ public class ClientRunner {
                 FIND_ClIENT, FIND_PET, CHANGE_CLIENT_NAME, CHANGE_PET_NAME, DELETE_CLIENT, DELETE_PET, EXIT));
         int selection = in.nextInt();
         selection = check(selection, 1, 9);
-        System.out.println("selection: " + selection);
         switch (selection){
             case 1:
                 showClientList();
@@ -57,6 +75,21 @@ public class ClientRunner {
                 break;
             case 3:
                 findClient();
+                break;
+            case 4:
+                findPet();
+                break;
+            case 5:
+                changeClientName();
+                break;
+            case 6:
+                changePetName();
+                break;
+            case 7:
+                removeClient();
+                break;
+            case 8:
+                removePet();
                 break;
             case 9:
                 exit();
@@ -69,7 +102,7 @@ public class ClientRunner {
         System.out.println("--- Client list ---");
         clinic.showClients();
         System.out.println(slash);
-        start();
+        nextOperation();
     }
 
     private static void addClient(){
@@ -95,7 +128,7 @@ public class ClientRunner {
         clinic.addClient(clientName, pet);
         System.out.println(String.format("Client %s added to the list", clientName));
         System.out.println(slash);
-        start();
+        nextOperation();
     }
 
     private static void findClient(){
@@ -115,7 +148,117 @@ public class ClientRunner {
                 break;
         }
         System.out.println(slash);
-        start();
+        nextOperation();
+    }
+
+    public static void findPet(){
+        System.out.println("Find pet:\n1) by Name \n2) by Client's name");
+        int selection = in.nextInt();
+        selection = check(selection, 1, 2);
+        switch (selection){
+            case 1:
+                System.out.println("Enter pet's name: ");
+                String petName = in.next();
+                clinic.findPet(petName).toString();
+                break;
+            case 2:
+                System.out.println("Enter client's name: ");
+                String clientName = in.next();
+                clinic.findPetByClientName(clientName);
+                break;
+        }
+        System.out.println(slash);
+        nextOperation();
+    }
+
+    public static void changeClientName(){
+        System.out.println("Change client's name:\n1) by id \n2) by previous name");
+        int selection = in.nextInt();
+        selection = check(selection, 1, 2);
+        String newName = null;
+        switch (selection){
+            case 1:
+                System.out.println("Enter id: ");
+                int id = in.nextInt();
+                System.out.println("Enter new name: ");
+                newName = in.next();
+                clinic.changeClientsNameById(id, newName);
+                break;
+            case 2:
+                System.out.println("Enter previous client's name: ");
+                String clientName = in.next();
+                System.out.println("Enter new client's name: ");
+                newName = in.next();
+                clinic.changeClientsName(clientName, newName);
+                break;
+        }
+        System.out.println(slash);
+        nextOperation();
+    }
+
+    public static void changePetName(){
+        System.out.println("Change pet's name:\n1) by id \n2) by previous name");
+        int selection = in.nextInt();
+        selection = check(selection, 1, 2);
+        String newName = null;
+        switch (selection){
+            case 1:
+                System.out.println("Enter id: ");
+                int id = in.nextInt();
+                System.out.println("Enter new name: ");
+                newName = in.next();
+                clinic.changePetsNameById(id, newName);
+                break;
+            case 2:
+                System.out.println("Enter previous pet's name: ");
+                String clientName = in.next();
+                System.out.println("Enter new pet's name: ");
+                newName = in.next();
+                clinic.changePetsName(clientName, newName);
+                break;
+        }
+        System.out.println(slash);
+        nextOperation();
+    }
+
+    public static void removeClient(){
+        System.out.println("Remove client:\n1) by id \n2) by name");
+        int selection = in.nextInt();
+        selection = check(selection, 1, 2);
+        switch (selection){
+            case 1:
+                System.out.println("Enter id: ");
+                int id = in.nextInt();
+                clinic.removeClientById(id);
+                break;
+            case 2:
+                System.out.println("Enter client's name: ");
+                String clientName = in.next();
+                clinic.removeClientByName(clientName);
+                break;
+        }
+        System.out.println(slash);
+        nextOperation();
+    }
+
+    public static void removePet(){
+        System.out.println("Remove pet:\n1) by id \n2) by name");
+        int selection = in.nextInt();
+        selection = check(selection, 1, 2);
+        switch (selection){
+            case 1:
+                System.out.println("Enter id: ");
+                int id = in.nextInt();
+                clinic.removePetById(id);
+                break;
+            case 2:
+                System.out.println("Enter pet's name: ");
+                String petName = in.next();
+                clinic.removePetByName(petName);
+                break;
+        }
+        System.out.println(slash);
+        nextOperation();
     }
 
     public static void exit(){
@@ -133,7 +276,7 @@ public class ClientRunner {
                 break;
             case "N":
             case "n":
-                start();
+                nextOperation();
                 break;
         }
     }

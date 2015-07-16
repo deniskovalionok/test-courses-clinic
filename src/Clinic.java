@@ -35,8 +35,8 @@ public class Clinic {
             i++;
         }
         if(clientList.get(i).getName().equalsIgnoreCase(clientName)){
-            System.out.println(String.format("Found >> id: %s; name: %s", clientList.get(i).getId(),
-                    clientList.get(i).getName()));
+            System.out.println(String.format("Found >> id: %s; name: %s; pet: %s", clientList.get(i).getId(),
+                    clientList.get(i).getName(), clientList.get(i).getPet().getName()));
             client = clientList.get(i);
         } else {
             System.out.println(String.format("Can't find client with name %s !", clientName));
@@ -54,8 +54,8 @@ public class Clinic {
             i++;
         }
         if(clientList.get(i).getPet().getName().equalsIgnoreCase(petName)){
-            System.out.println(String.format("Found >> id: %s; pet: %s", clientList.get(i).getId(),
-                    clientList.get(i).getPet().getName()));
+            System.out.println(String.format("Found >> id: %s; pet: %s; owner: %s", clientList.get(i).getId(),
+                    clientList.get(i).getPet().getName(), clientList.get(i).getName()));
             pet = clientList.get(i).getPet();
         } else {
             System.out.println(String.format("Can't find pet with name %s !", petName));
